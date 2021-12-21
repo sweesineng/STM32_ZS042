@@ -22,6 +22,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include <string.h>
 #include "main.h"
+#include "math.h"
 
 /* Driver Selection ----------------------------------------------------------*/
 //#define LL_Driver
