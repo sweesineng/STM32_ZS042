@@ -242,7 +242,7 @@ uint8_t AT24Cxx_FillPage(uint16_t Page, uint8_t Value)
 {
 	uint8_t Buffer[AT24Cxx_PAGE_SIZE];
 	memset(Buffer, Value, AT24Cxx_PAGE_SIZE);
-	uint8_t MemAddr = Page << (int)(log(AT24Cxx_PAGE_SIZE) / log(2));
+	uint16_t MemAddr = Page << (int)(log(AT24Cxx_PAGE_SIZE) / log(2));
 
 	AT24Cxx_Bus_Write(AT24Cxx_ADDRESS, MemAddr, Buffer, AT24Cxx_PAGE_SIZE);
 
