@@ -34,11 +34,11 @@ uint8_t AT24Cxx_Bus_Write(uint16_t DevAddr, uint16_t MemAddr, uint8_t *pData,
     LL_I2C_HandleTransfer(I2Cx, DevAddr, LL_I2C_ADDRSLAVE_7BIT, 2,
     		I2C_CR2_RELOAD, LL_I2C_GENERATE_START_WRITE);
 
-    while (!LL_I2C_IsActiveFlag_TXIS(I2Cx)){};
-
 	 /* Send 16bit Memory Address */
+    while (!LL_I2C_IsActiveFlag_TXIS(I2Cx)){};
     LL_I2C_TransmitData8(I2Cx, ((uint8_t)((uint16_t)(((uint16_t)(MemAddr
     		& (uint16_t)(0xFF00U))) >> 8U))));	// MSB
+    while (!LL_I2C_IsActiveFlag_TXIS(I2Cx)){};
     LL_I2C_TransmitData8(I2Cx, ((uint8_t)(uint16_t)(MemAddr
     		& (uint16_t)0x00FF)));	// LSB
 
@@ -148,9 +148,9 @@ uint8_t AT24Cxx_Bus_Read(uint16_t DevAddr, uint16_t MemAddr, uint8_t *pData,
 
 	 /* Send 16bit Memory Address */
     while (!LL_I2C_IsActiveFlag_TXIS(I2Cx)) {};
-
     LL_I2C_TransmitData8(I2Cx, ((uint8_t)((uint16_t)(((uint16_t)(MemAddr
     		& (uint16_t)(0xFF00U))) >> 8U))));	// MSB
+    while (!LL_I2C_IsActiveFlag_TXIS(I2Cx)){};
     LL_I2C_TransmitData8(I2Cx, ((uint8_t)(uint16_t)(MemAddr
     		& (uint16_t)0x00FF)));	// LSB
 
